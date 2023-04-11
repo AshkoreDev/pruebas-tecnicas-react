@@ -8,8 +8,8 @@
 - Image random: https://cataas.com/cat/says/hello
 
 
-## Hacer
+## Tareas
 
-- Recuperaru un hecho aleatorio de gatos de la 1era API.
+- Recuperar un hecho aleatorio de gatos de la 1era API.
 
 - Mostrar una imagen de un gato con la primera palabra del hecho recuperado, usando la 2da API.
