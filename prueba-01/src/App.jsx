@@ -9,7 +9,6 @@ function App() {
 
   const handleClick = async () => refreshFact();
 
-
   return (
   	
   	<main>

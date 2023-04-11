@@ -3,7 +3,7 @@ import { getRandomFact } from './../services/getRandomFact.js'
 
 export const useCatFact = () => {
 
-  const [fact, setFact] = useState();
+  const [fact, setFact] = useState('');
 
   const refreshFact = () => {
 
