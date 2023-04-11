@@ -1,56 +1,26 @@
-import React, { useState, useEffect } from 'react';
-
-const CAT_ENDPOINT_RAMDOM_FACT = `https://catfact.ninja/fact`;
-
-const CAT_PREFIX_IMAGE_URL = 'https://cataas.com';
-
+import React from 'react';
+import { useCatImage } from './hooks/useCatImage.jsx';
+import { useCatFact } from './hooks/useCatFact.jsx';
 
 function App() {
 
-	const [fact, setFact] = useState('');
-	const [imageUrl, setImageUrl] = useState('');
-	const [factError, setFactError] = useState('');
+	const { fact, refreshFact } = useCatFact();
+  const { imageUrl } = useCatImage({ fact });
 
-	useEffect(() => {
+  const handleClick = async () => refreshFact();
 
-		fetch(CAT_ENDPOINT_RAMDOM_FACT)
-			.then((res) => {
-
-				if(!res.ok) {
-
-					throw new Error('Error fetching fact.');
-					return res.json();
-				}
-			})
-			.then((data) => {
-
-				const { fact } = data;
-				setFact(fact);
-			});
-
-	}, []);
-
-	useEffect(() => {
-
-		if(!fact) return;
-
-		const threeFirstWords = fact.split(' ', 3).join(' ');
-
-		fetch(`https://cataas.com/cat/says/${threeFirstWords}?size=50&color=red&json=true`)
-			.then((res) => res.json())
-			.then((rs) => {
-
-				const { url } = rs;
-				setImageUrl(url);
-			});
-
-	}, [fact]);
 
   return (
   	
   	<main>
   		{ fact && <p>{fact}</p> }
-  		{ imageUrl && <img src={`${CAT_PREFIX_IMAGE_URL}${imageUrl}`} alt={`Image extracted using the first three words for ${fact}`} width="350px"/> }
+  		{ 
+  			imageUrl 
+  			&& 
+  			<img src={imageUrl} alt={`Image extracted using the first three words for ${fact}`} width="300px"/> 
+  		}
+
+  		<button onClick={handleClick}>Get new fact!</button>
   	</main>
 
   );
