@@ -1,6 +1,5 @@
-import React from 'react';
-import { useCatImage } from './hooks/useCatImage.jsx';
-import { useCatFact } from './hooks/useCatFact.jsx';
+import { useCatImage } from './hooks/useCatImage.js';
+import { useCatFact } from './hooks/useCatFact.js';
 
 function App() {
 
@@ -24,5 +23,6 @@ function App() {
 
   );
 };
+
 
 export default App;
